@@ -39,11 +39,21 @@ Founders individuales que necesitan:
 
 ## Estado actual
 
-**v0.4.0 — propose-spike command**
+**v0.5.0 — dojoos-api-consumer agent shipped. All v0.x scope items delivered.**
 
 Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/issue/DOJ-3221) ✓ Done (parent SPIKE: [DOJ-3189](https://linear.app/dojo-coding/issue/DOJ-3189)).
 
-### Skills completos (8 — todos los del scope original)
+### v0.x release summary
+
+| Version | Shipped | Scope |
+|---|---|---|
+| v0.1.0 | ✓ | Initial scaffold + `startup-intake` + `feature-to-spike` skills |
+| v0.2.0 | ✓ | `cap-table-builder` + `founder-documents` skills |
+| v0.3.0 | ✓ | `cofounder-matching` + `investor-matching` + `demo-day-prep` + `stage-tracker` skills |
+| v0.4.0 | ✓ | `/propose-spike` command |
+| **v0.5.0** | ✓ | **`dojoos-api-consumer` agent** — final v0.x scope item |
+
+### Skills (8 — full v0.x scope)
 
 **Core (v0.1)**:
 - **`startup-intake`** — AI intake interview que produce un `startup-profile.md` compatible schema-wise con DojoOS Startup Profile
@@ -63,32 +73,30 @@ Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/iss
 
 - **`/launchpad-toolkit:propose-spike`** — wrapper command over `feature-to-spike` skill con auto-assignee William + auto-parent DOJ-3189 + auto-labels + optional direct file via Linear MCP. Acepta `$ARGUMENTS` como seed del concrete pattern.
 
+### Agents (v0.5)
+
+- **`dojoos-api-consumer`** — spec-driven enrichment agent que consume la OpenAPI spec de DojoOS (`https://docs.dojocoding.io/openapi.yaml`, shipped via DOJ-3170). Lee el spec una vez por sesión, resuelve operaciones solicitadas por skills (ej. `list_candidate_pool`, `get_investor_database`, `sync_stage`), ejecuta llamadas HTTP autenticadas con Bearer JWT, y retorna YAML estructurado con status codes (`LIVE_DATA` / `NOT_IMPLEMENTED` / `SPEC_GAP` / `AUTH_REQUIRED` / `RATE_LIMITED` / `ERROR`). **Nunca fabrica respuestas**. Cuando un endpoint no existe en el spec, retorna `SPEC_GAP` con un `SPIKE_SUGGESTION` listo para alimentar el skill `feature-to-spike`. Los skills `cofounder-matching`, `investor-matching`, y `stage-tracker` ya mencionan al agente como path opcional de enrichment.
+
 ### Reference docs (1)
 
 - **`productization-workflow.md`** — Cómo fluye methodology → SPIKE → DojoOS feature
 
-### NO incluido en v0.4 (roadmap v0.5)
+### Qué endpoints del API están live hoy
 
-| Artifact | Estado |
-|---|---|
-| `dojoos-api-consumer` agent | 🔜 v0.5 — implementable contra el spec OpenAPI YA shipped en [docs.dojocoding.io/openapi.yaml](https://docs.dojocoding.io/openapi.yaml) (via DOJ-3170). Agent reads the spec; endpoint availability tracked separately per endpoint in DojoOS repo. |
+El spec expone 12 endpoints (Agent, Courses, Projects, Billing, Users, Admin, Media, Email). El agente les da acceso via semantic aliases (`get_user_courses`, `switch_role`, `submit_b2b_lead`, `create_checkout_session`, etc.).
 
-### Unblocking histórica
+Los endpoints **launchpad-specific** (cofounder pool, investor DB, demo-day queue, stage sync, Dojo Score, document templates, cap-table platform link) NO están en el spec todavía — el agente los retorna como `SPEC_GAP` y auto-sugiere SPIKES para William. Expected trajectory: conforme William + Daniel shipping endpoints, los `SPEC_GAP` convierten a `LIVE_DATA` sin cambios en el agente (es spec-driven, no endpoint-hardcoded).
 
-Originalmente v0.3/v0.4 scope estaba marcado "blocked on @garbanzo's DojoOS API". Re-evaluación reveló 2 flawed assumptions:
+### Bearer token — cómo autenticar
 
-1. Los **skills** son metodología (rubrics, scoring, workflows), no data fetching — shippable sin API
-2. La **OpenAPI spec YA existe** en dojo-documentation (DOJ-3170 closed 2026-04-14) — el agente puede implementarse contra contract, no needs new infrastructure from @garbanzo
+El agente espera un Supabase JWT en la variable de entorno `DOJOOS_BEARER_TOKEN`. Cómo obtenerlo:
 
-Solo quedan los endpoints individuales del Edge Function layer, tracked separately per endpoint en DojoOS repo.
+1. Sign in en https://dev.dojocoding.io (staging) o https://dojocoding.io (prod)
+2. DevTools → Application → Local Storage → key `sb-<project-ref>-auth-token`
+3. Copiar `access_token` del JSON value
+4. `export DOJOOS_BEARER_TOKEN="<paste-here>"`
 
-Agente pendiente:
-
-- `dojoos-api-consumer` — consume DojoOS API para matching; blocked en implementación de API por Daniel Garbanzo
-
-Command pendiente:
-
-- `/launchpad-toolkit:propose-spike` — wrapper para `feature-to-spike` que genera issue listo para Linear CLI/MCP
+Default base URL es staging (`pphagffyuibcfulgrpjb.supabase.co`). Para producción, explicit opt-in: `export DOJOOS_API_BASE_URL="https://<prod-ref>.supabase.co/functions/v1"`.
 
 ## Instalación
 
@@ -101,6 +109,7 @@ claude plugin add DojoCodingLabs/launchpad-toolkit
 ## Fuentes metodológicas
 
 - **DojoOS Launchpad current spec**: `dojo-documentation/content/docs/product/launchpad/startup-flows.md`
+- **DojoOS OpenAPI spec**: `https://docs.dojocoding.io/openapi.yaml` (shipped via [DOJ-3170](https://linear.app/dojo-coding/issue/DOJ-3170))
 - **Pillar ownership** (Slack 2026-04-10 `#C0AKTN24C91`): @juan + @daniel asignaron Launchpad a @william
 - **Plan file**: `~/.claude/plans/cheeky-tinkering-rain.md` (Phase 2)
 

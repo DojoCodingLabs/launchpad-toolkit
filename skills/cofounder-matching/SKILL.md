@@ -309,15 +309,9 @@ If ANY kill-switch → **DISQUALIFY regardless of score**.
 
 ---
 
-## Integración con DojoOS (future)
+## Integración con DojoOS (via dojoos-api-consumer agent)
 
-Cuando Daniel Garbanzo implemente el DojoOS API, el agent `dojoos-api-consumer` permitirá:
-
-- Pull candidate pool directo desde DojoOS co-founder matching queue
-- Push candidate scorecards de vuelta a DojoOS para tracking cross-founder
-- Use Dojo-Score (DojoOS platform score) como input adicional al eje Track Record
-
-Hasta entonces, el skill opera standalone con manual candidate input.
+**Disponible desde v0.5.0** — el agent `dojoos-api-consumer` (ver `agents/dojoos-api-consumer.md`) es invocable desde este skill en el Paso 3 (collect candidates) pidiendo la operación `list_candidate_pool`. Hoy esa operación retorna `SPEC_GAP` (el endpoint no está en la OpenAPI spec todavía) y el skill procede con manual candidate input — como siempre. Cuando @william + @garbanzo expongan el endpoint en DojoOS, el agente comenzará a retornar `LIVE_DATA` automáticamente sin cambios en este skill: candidate pool + Dojo Score embebido se inyectan al rubric 6-axis. Mismo patrón para push de scorecards de vuelta via `sync_candidate_scorecard` (también `SPEC_GAP` hoy).
 
 ## Integración con otras skills
 

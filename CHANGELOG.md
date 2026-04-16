@@ -6,8 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Planned for v0.5
-- `dojoos-api-consumer` agent — consumes the **already shipped** DojoOS OpenAPI spec at `https://docs.dojocoding.io/openapi.yaml` (via DOJ-3170 Stoplight Elements integration). Agent reads the spec to understand available endpoints and enriches skills with runtime data when endpoints are live. Note: agent can be implemented NOW against the OpenAPI spec as contract; actual endpoint availability depends on Edge Function implementation status (tracked separately per endpoint in DojoOS repo).
+_No unreleased changes. v0.5 shipped the final v0.x scope item (`dojoos-api-consumer` agent). Next milestone is v1.0 stability pass._
+
+## [0.5.0] — 2026-04-15
+
+### Added
+
+- Agent `dojoos-api-consumer` — spec-driven enrichment layer that consumes the DojoOS OpenAPI spec (shipped via DOJ-3170 at `https://docs.dojocoding.io/openapi.yaml` / local mirror in `dojo-documentation/public/openapi.yaml`). Reads the spec once per session, caches it, resolves skill-facing semantic aliases (e.g. `list_candidate_pool`, `get_investor_database`, `sync_stage`) to OpenAPI `operationId`s, and executes `curl`-based HTTP calls with Bearer JWT auth. Returns a structured YAML contract with status codes:
+  - `LIVE_DATA` — endpoint reachable + returned data
+  - `NOT_IMPLEMENTED` — endpoint in spec but 404/501/timeout
+  - `SPEC_GAP` — operation not in spec at all (seeds a `feature-to-spike` proposal)
+  - `AUTH_REQUIRED` — token missing/expired
+  - `RATE_LIMITED` — 429 with `Retry-After`
+  - `ERROR` — network/parse/unknown 5xx
+- Agent never fabricates API responses — graceful degradation is the default behavior, so every calling skill continues to work standalone when the requested endpoint is missing.
+- Agent defaults to staging (`pphagffyuibcfulgrpjb.supabase.co/functions/v1`) — never hits production without explicit opt-in via `DOJOOS_API_BASE_URL`.
+- Security posture: bearer token never logged, never persisted, redacted from all output; non-DojoOS redirects treated as errors.
+
+### Changed
+
+- `plugin.json` 0.4.0 → 0.5.0
+- Skills `cofounder-matching`, `investor-matching`, `stage-tracker` — "Integración con DojoOS (future)" sections updated to reference the now-available `dojoos-api-consumer` agent (1-2 sentences each, no methodology changes).
+- `README.md` — adds v0.5 section, lists the agent alongside the 8 skills + 1 command, clarifies that all 4 v0.x releases have shipped.
+- Keyword `dojoos-api-consumer` added to `plugin.json`.
+
+### Rationale
+
+v0.5 was originally scoped as "blocked on @garbanzo's API implementation". Re-evaluation revealed two flawed assumptions:
+
+1. The OpenAPI spec **already exists** (DOJ-3170 closed 2026-04-14) — the agent can be implemented against contract, not infrastructure.
+2. The agent does not require every endpoint to be live — it handles `SPEC_GAP` (no endpoint) and `NOT_IMPLEMENTED` (endpoint stubbed) as first-class outcomes, so it ships useful on day one and becomes progressively more useful as @william + @garbanzo expose Launchpad-specific endpoints.
+
+Today the agent unlocks `LIVE_DATA` for the 12 general-purpose endpoints already in the spec (Agent chat, course progress, certificates, B2B leads, billing, role switch, admin analytics, media tokens, email). Launchpad-specific operations (cofounder pool, investor DB, demo-day queue, stage sync, Dojo Score) return `SPEC_GAP` today — by design — and each SPEC_GAP auto-seeds a SPIKE proposal for William via the `feature-to-spike` loop.
 
 ## [0.4.0] — 2026-04-16
 
@@ -76,7 +106,8 @@ Previously v0.3 skills were blocked on DojoOS API via @garbanzo. Re-evaluation r
 - `dojoos-api-consumer` agent not implemented (blocked on DojoOS API by Daniel Garbanzo)
 - Bilingual output framework documented but implementation per-skill is roadmap
 
-[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.5.0...HEAD
+[0.5.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.5.0
 [0.4.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.4.0
 [0.3.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.2.0

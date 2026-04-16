@@ -333,15 +333,9 @@ Generar `history/YYYY-MM-DD-stage-transition.md` per transition event.
 
 ---
 
-## Integración con DojoOS (future)
+## Integración con DojoOS (via dojoos-api-consumer agent)
 
-Cuando el DojoOS API esté disponible:
-
-- POST current-stage + dojo-score al DojoOS tracker endpoint
-- Sync milestones + blockers bidireccional
-- DojoOS puede surface founders por stage para matching + community
-
-Standalone hasta entonces — el schema de output está diseñado compatible, se puede migrar when API lands.
+**Disponible desde v0.5.0** — este skill puede invocar al agent `dojoos-api-consumer` con las operaciones `sync_stage` (POST current-stage + dojo-score al tracker), `list_milestones` (pull milestones existentes del founder's workspace), y `get_user_courses` (esta ÚLTIMA sí está LIVE en el spec hoy — `getUserCourses` / `/user-courses`). Course progress del user puede usarse como evidencia automática para "track record" en Formation / MVP axis. `sync_stage` y `list_milestones` retornan `SPEC_GAP` hoy — el skill continúa standalone con output markdown local. Cuando los endpoints launchpad lancen, el sync será bidireccional sin cambios en este skill — el schema de output ya está DojoOS-compat por diseño.
 
 ## Integración con otras skills
 
