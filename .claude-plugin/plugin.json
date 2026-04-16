@@ -1,0 +1,24 @@
+{
+  "name": "launchpad-toolkit",
+  "version": "0.1.0",
+  "description": "Methodology prototype laboratory for DojoOS Launchpad pillar — AI intake, cap table, co-founder matching, investor matching, demo day prep, stage tracker. Dual-purpose: external CLI for founders without DojoOS + internal validation lab for productizing patterns into the DojoOS Launchpad product.",
+  "author": {
+    "name": "Luis Andres Pena Castillo",
+    "url": "https://github.com/DojoCodingLabs"
+  },
+  "homepage": "https://github.com/DojoCodingLabs/launchpad-toolkit",
+  "repository": "https://github.com/DojoCodingLabs/launchpad-toolkit",
+  "license": "BSL-1.1",
+  "keywords": [
+    "claude-code",
+    "claude-code-plugin",
+    "launchpad",
+    "startup-intake",
+    "cap-table",
+    "cofounder-matching",
+    "investor-matching",
+    "demo-day",
+    "founder-documents",
+    "dojoos-prototype"
+  ]
+}
