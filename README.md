@@ -39,29 +39,40 @@ Founders individuales que necesitan:
 
 ## Estado actual
 
-**v0.2.0 — cap table + founder documents**
+**v0.3.0 — matching + demo day + stage tracking**
 
 Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/issue/DOJ-3221) ✓ Done (parent SPIKE: [DOJ-3189](https://linear.app/dojo-coding/issue/DOJ-3189)).
 
-### Skills completos (4)
+### Skills completos (8 — todos los del scope original)
 
-- **`startup-intake`** (v0.1) — AI intake interview que produce un `startup-profile.md` compatible schema-wise con DojoOS Startup Profile
-- **`feature-to-spike`** (v0.1) — **Differentiator del plugin**. Transforma learnings del dog-food en Linear SPIKE issues formateados para William, con criterios de aceptación + links a artefactos generados
-- **`cap-table-builder`** (v0.2) — Constructor del cap table inicial para single venture: founders + option pool + advisor pool + SAFEs + convertible notes + vesting schedule + SAFE conversion modeling (3 scenarios)
-- **`founder-documents`** (v0.2) — Generador del stack legal founder: Founder Stock Purchase Agreement (o Operating Agreement LLC), IP Assignment, Vesting Schedule Exhibit, Advisor Agreement (FAST), SAFE (post-money YC), Term Sheet (NVCA Series Seed)
+**Core (v0.1)**:
+- **`startup-intake`** — AI intake interview que produce un `startup-profile.md` compatible schema-wise con DojoOS Startup Profile
+- **`feature-to-spike`** — **Differentiator del plugin**. Transforma learnings del dog-food en Linear SPIKE issues formateados para William
+
+**Founder setup (v0.2)**:
+- **`cap-table-builder`** — cap table inicial para single venture: founders + option pool + advisor pool + SAFEs + convertible notes + vesting + SAFE conversion modeling
+- **`founder-documents`** — stack legal founder: FSPA, IP Assignment, Vesting Exhibit, Advisor (FAST), SAFE (YC post-money), Term Sheet (NVCA)
+
+**Matching + fundraising + tracking (v0.3)**:
+- **`cofounder-matching`** — rubric 6-axis (domain / skill / values / equity / time / track record) con weighted scoring ajustado por stage. Kill-switches override score.
+- **`investor-matching`** — 5-axis scoring (stage / check / thesis / geography / value-add) con priority configurable. Pipeline tracker incluido.
+- **`demo-day-prep`** — 4 artefactos: application, 10-slide deck outline, 3-min script, 50+ Q&A bank. Rehearsal best practices 5-5-5.
+- **`stage-tracker`** — 6 stages (Ideation → Scaling) con exit criteria + Dojo Score (5-axis, 0-100). Evidence-over-claim principle.
 
 ### Reference docs (1)
 
 - **`productization-workflow.md`** — Cómo fluye methodology → SPIKE → DojoOS feature
 
-### NO incluido en v0.2 (roadmap)
+### NO incluido en v0.3 (roadmap v0.4)
 
-| Skill | DojoOS Launchpad feature que prototiparía | Estado |
-|---|---|---|
-| `cofounder-matching` | Co-Founder Matching + Dojo-Score | 🔜 v0.3 (pending DojoOS API by @garbanzo) |
-| `investor-matching` | Investor fit scoring | 🔜 v0.3 (pending DojoOS API) |
-| `demo-day-prep` | Demo Day applications + pitch prep | 🔜 v0.3 |
-| `stage-tracker` | Milestone tracking (Ideation → Scaling) | 🔜 v0.3 |
+| Artifact | Bloqueador |
+|---|---|
+| `dojoos-api-consumer` agent | Pending DojoOS API by @garbanzo (enrichment layer sobre skills existentes) |
+| `/launchpad-toolkit:propose-spike` command | Wrapper sobre `feature-to-spike` — v0.4 |
+
+### Clarificación v0.3 scope
+
+Los 4 skills de matching/demo-day/tracking son **metodología standalone** (rubrics, scoring, workflows) — no requieren live DojoOS API. Solo el agente `dojoos-api-consumer` depende del API by @garbanzo para enriquecer los skills con live data (candidate pool, investor DB, sync stage tracker). Los skills funcionan 100% sin él.
 
 Agente pendiente:
 

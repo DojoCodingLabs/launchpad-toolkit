@@ -6,13 +6,30 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Planned for v0.3
-- `cofounder-matching` skill (blocked on DojoOS API by @garbanzo)
-- `investor-matching` skill (blocked on DojoOS API by @garbanzo)
-- `demo-day-prep` skill
-- `stage-tracker` skill
-- `dojoos-api-consumer` agent
-- `/launchpad-toolkit:propose-spike` command
+### Planned for v0.4
+- `dojoos-api-consumer` agent (blocked on DojoOS API by @garbanzo) — will enrich existing skills with live DojoOS data (candidate pool, investor DB, stage tracker sync)
+- `/launchpad-toolkit:propose-spike` command — wrapper sobre `feature-to-spike` skill con auto-assignee a William
+
+## [0.3.0] — 2026-04-16
+
+### Added
+
+- Skill `cofounder-matching` — rubric-based co-founder matching methodology con 6-axis framework (domain fit, skill complementarity, values alignment, equity expectations, time commitment, track record). Weighted scoring ajustado por stage. Genera scorecard + gap analysis + interview questions + ranked shortlist. Kill-switches override score. Standalone; sync con DojoOS API cuando el agente `dojoos-api-consumer` esté disponible.
+- Skill `investor-matching` — investor fit scoring con 5-axis framework (stage fit, check size, thesis alignment, geography/vertical, value-add depth). Weighted scoring configurable por priority (fundraising-first / value-add-first / stealth-strategic). Genera fit-scorecard + intelligence notes + customized outreach + target list ranked + pipeline tracker.
+- Skill `demo-day-prep` — preparation workflow para Demo Day events (YC, Techstars, etc.). 4 artefactos: application write-up, 10-slide deck outline con speaker notes, 3-min pitch script con timing markers, 50+ Q&A bank categorizado. Incluye rehearsal best practices (5-5-5 rule) y anti-patterns. Standalone; schema-compat con DojoOS Demo Day queue futuro.
+- Skill `stage-tracker` — milestone tracking across the 6 DojoOS Launchpad stages (Ideation → Formation → MVP → Traction → Funded → Scaling). Exit criteria per stage + Dojo-Score-compatible 5-axis scoring (Team, Product, Traction, Market, Business Model; 0-100 total). Genera current-stage + milestones + blockers + dojo-score + history. Evidence-over-claim principle.
+
+### Changed
+
+- `plugin.json` version bump 0.2.0 → 0.3.0
+- README updated to reflect 8 skills total (up from 4)
+- Roadmap simplified: v0.4 = `dojoos-api-consumer` agent + `/propose-spike` command (v0.3 is the last "skills-only" release)
+
+### Rationale
+
+Previously v0.3 skills were blocked on DojoOS API via @garbanzo. Re-evaluation revealed that skills themselves are **methodology** (rubrics, scoring, workflows) — they do NOT require live API data. Only the `dojoos-api-consumer` **agent** (which fetches live data to enrich skills) is API-blocked. Skills ship as standalone; agent is v0.4 pending API.
+
+## [0.2.0] — 2026-04-16
 
 ## [0.2.0] — 2026-04-16
 
@@ -42,6 +59,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `dojoos-api-consumer` agent not implemented (blocked on DojoOS API by Daniel Garbanzo)
 - Bilingual output framework documented but implementation per-skill is roadmap
 
-[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.2.0
 [0.1.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.1.0
