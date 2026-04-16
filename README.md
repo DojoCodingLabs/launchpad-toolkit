@@ -39,26 +39,26 @@ Founders individuales que necesitan:
 
 ## Estado actual
 
-**v0.1.0 — bootstrap**
+**v0.2.0 — cap table + founder documents**
 
-Sub-issue de ejecución: [DOJ-3221](https://linear.app/dojo-coding/issue/DOJ-3221) (parent SPIKE: [DOJ-3189](https://linear.app/dojo-coding/issue/DOJ-3189)).
+Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/issue/DOJ-3221) ✓ Done (parent SPIKE: [DOJ-3189](https://linear.app/dojo-coding/issue/DOJ-3189)).
 
-### Skills completos (2)
+### Skills completos (4)
 
-- **`startup-intake`** — AI intake interview que produce un `startup-profile.md` compatible schema-wise con DojoOS Startup Profile
-- **`feature-to-spike`** — **Differentiator del plugin**. Transforma learnings del dog-food en Linear SPIKE issues formateados para William, con criterios de aceptación + links a artefactos generados
+- **`startup-intake`** (v0.1) — AI intake interview que produce un `startup-profile.md` compatible schema-wise con DojoOS Startup Profile
+- **`feature-to-spike`** (v0.1) — **Differentiator del plugin**. Transforma learnings del dog-food en Linear SPIKE issues formateados para William, con criterios de aceptación + links a artefactos generados
+- **`cap-table-builder`** (v0.2) — Constructor del cap table inicial para single venture: founders + option pool + advisor pool + SAFEs + convertible notes + vesting schedule + SAFE conversion modeling (3 scenarios)
+- **`founder-documents`** (v0.2) — Generador del stack legal founder: Founder Stock Purchase Agreement (o Operating Agreement LLC), IP Assignment, Vesting Schedule Exhibit, Advisor Agreement (FAST), SAFE (post-money YC), Term Sheet (NVCA Series Seed)
 
 ### Reference docs (1)
 
 - **`productization-workflow.md`** — Cómo fluye methodology → SPIKE → DojoOS feature
 
-### NO incluido en v0.1 (roadmap)
+### NO incluido en v0.2 (roadmap)
 
 | Skill | DojoOS Launchpad feature que prototiparía | Estado |
 |---|---|---|
-| `cofounder-matching` | Co-Founder Matching + Dojo-Score | 🔜 v0.2 (pending DojoOS API by @garbanzo) |
-| `cap-table-builder` | Cap Table + Vesting Calculator | 🔜 v0.2 |
-| `founder-documents` | Founder Agreement / IP / Vesting / Advisor / SAFE / Term Sheet templates | 🔜 v0.2 |
+| `cofounder-matching` | Co-Founder Matching + Dojo-Score | 🔜 v0.3 (pending DojoOS API by @garbanzo) |
 | `investor-matching` | Investor fit scoring | 🔜 v0.3 (pending DojoOS API) |
 | `demo-day-prep` | Demo Day applications + pitch prep | 🔜 v0.3 |
 | `stage-tracker` | Milestone tracking (Ideation → Scaling) | 🔜 v0.3 |

@@ -6,10 +6,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Planned for v0.2
-- `cap-table-builder` skill — cap table + vesting calculator
-- `founder-documents` skill — Founder Agreement / IP Assignment / Vesting / Advisor / SAFE / Term Sheet templates
-
 ### Planned for v0.3
 - `cofounder-matching` skill (blocked on DojoOS API by @garbanzo)
 - `investor-matching` skill (blocked on DojoOS API by @garbanzo)
@@ -17,6 +13,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `stage-tracker` skill
 - `dojoos-api-consumer` agent
 - `/launchpad-toolkit:propose-spike` command
+
+## [0.2.0] — 2026-04-16
+
+### Added
+
+- Skill `cap-table-builder` — constructor de cap table inicial para single venture. Soporta founders + option pool + advisor pool + SAFEs + convertible notes. Genera `cap-table.md` + `vesting-schedule.md` + `safe-conversion-modeling.md` con modeling de 3 scenarios (conservative/expected/optimistic) de next priced round. Cross-reference a `venture-studio-toolkit:sweat-equity-agreement` para 83(b) tratamiento diferenciado por entity type (C-Corp restricted stock / LLC profits interest / LLC capital interest).
+- Skill `founder-documents` — generador de stack legal founder. 6 documentos: Founder Stock Purchase Agreement (o Operating Agreement LLC), IP Assignment, Vesting Schedule Exhibit, Advisor Agreement (FAST framework), SAFE (post-money YC standard), Term Sheet (NVCA Series Seed). Cada output incluye `[TO BE FILLED BY LAWYER]` markers y lawyer review checklist. STRONG legal disclaimer en todos los outputs.
+
+### Changed
+
+- `plugin.json` version bump 0.1.0 → 0.2.0
+- README references updated to reflect 4 skills total (up from 2)
 
 ## [0.1.0] — 2026-04-16
 
@@ -34,5 +42,6 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `dojoos-api-consumer` agent not implemented (blocked on DojoOS API by Daniel Garbanzo)
 - Bilingual output framework documented but implementation per-skill is roadmap
 
-[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.2.0
 [0.1.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.1.0
