@@ -6,9 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
-### Planned for v0.4
-- `dojoos-api-consumer` agent (blocked on DojoOS API by @garbanzo) — will enrich existing skills with live DojoOS data (candidate pool, investor DB, stage tracker sync)
-- `/launchpad-toolkit:propose-spike` command — wrapper sobre `feature-to-spike` skill con auto-assignee a William
+### Planned for v0.5
+- `dojoos-api-consumer` agent — consumes the **already shipped** DojoOS OpenAPI spec at `https://docs.dojocoding.io/openapi.yaml` (via DOJ-3170 Stoplight Elements integration). Agent reads the spec to understand available endpoints and enriches skills with runtime data when endpoints are live. Note: agent can be implemented NOW against the OpenAPI spec as contract; actual endpoint availability depends on Edge Function implementation status (tracked separately per endpoint in DojoOS repo).
+
+## [0.4.0] — 2026-04-16
+
+### Added
+
+- Command `/launchpad-toolkit:propose-spike` — thin wrapper sobre el skill `feature-to-spike` con defaults pre-configurados para William Ugalde (DojoOS Launchpad pillar owner):
+  - Auto-assignee: William (Linear ID `8f14370d-3602-49e3-81f2-eeb05b965687`)
+  - Auto-parent: DOJ-3189 (launchpad-toolkit tracking SPIKE)
+  - Auto-labels: `Spike`, `Explore`, `methodology-prototype`
+  - Auto-team: DojoOS; Auto-project: Launchpad; Auto-state: Triage
+  - Accepts optional `$ARGUMENTS` como seed del "concrete pattern" en FTS-1
+  - Direct file via Linear MCP (`mcp__linear-server__save_issue`) o fallback markdown copy-paste
+- Documentation of when NOT to use the command (feature requests, bugs, plugin internals — estos van por otras vías)
+
+### Changed
+
+- `plugin.json` 0.3.0 → 0.4.0
+- CHANGELOG v0.5 roadmap simplificado: solo `dojoos-api-consumer` agent. Descubrimiento: la OpenAPI spec YA existe en dojo-documentation/public/openapi.yaml (shipped via DOJ-3170). El agente puede implementarse contra el spec SIN depender de @garbanzo para nueva infraestructura — lo que bloquea es solo endpoint availability por-endpoint.
 
 ## [0.3.0] — 2026-04-16
 
@@ -59,7 +76,8 @@ Previously v0.3 skills were blocked on DojoOS API via @garbanzo. Re-evaluation r
 - `dojoos-api-consumer` agent not implemented (blocked on DojoOS API by Daniel Garbanzo)
 - Bilingual output framework documented but implementation per-skill is roadmap
 
-[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/DojoCodingLabs/launchpad-toolkit/compare/v0.4.0...HEAD
+[0.4.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.4.0
 [0.3.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.3.0
 [0.2.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.2.0
 [0.1.0]: https://github.com/DojoCodingLabs/launchpad-toolkit/releases/tag/v0.1.0

@@ -39,7 +39,7 @@ Founders individuales que necesitan:
 
 ## Estado actual
 
-**v0.3.0 — matching + demo day + stage tracking**
+**v0.4.0 — propose-spike command**
 
 Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/issue/DOJ-3221) ✓ Done (parent SPIKE: [DOJ-3189](https://linear.app/dojo-coding/issue/DOJ-3189)).
 
@@ -59,20 +59,28 @@ Sub-issue de ejecución bootstrap: [DOJ-3221](https://linear.app/dojo-coding/iss
 - **`demo-day-prep`** — 4 artefactos: application, 10-slide deck outline, 3-min script, 50+ Q&A bank. Rehearsal best practices 5-5-5.
 - **`stage-tracker`** — 6 stages (Ideation → Scaling) con exit criteria + Dojo Score (5-axis, 0-100). Evidence-over-claim principle.
 
+### Commands (v0.4)
+
+- **`/launchpad-toolkit:propose-spike`** — wrapper command over `feature-to-spike` skill con auto-assignee William + auto-parent DOJ-3189 + auto-labels + optional direct file via Linear MCP. Acepta `$ARGUMENTS` como seed del concrete pattern.
+
 ### Reference docs (1)
 
 - **`productization-workflow.md`** — Cómo fluye methodology → SPIKE → DojoOS feature
 
-### NO incluido en v0.3 (roadmap v0.4)
+### NO incluido en v0.4 (roadmap v0.5)
 
-| Artifact | Bloqueador |
+| Artifact | Estado |
 |---|---|
-| `dojoos-api-consumer` agent | Pending DojoOS API by @garbanzo (enrichment layer sobre skills existentes) |
-| `/launchpad-toolkit:propose-spike` command | Wrapper sobre `feature-to-spike` — v0.4 |
+| `dojoos-api-consumer` agent | 🔜 v0.5 — implementable contra el spec OpenAPI YA shipped en [docs.dojocoding.io/openapi.yaml](https://docs.dojocoding.io/openapi.yaml) (via DOJ-3170). Agent reads the spec; endpoint availability tracked separately per endpoint in DojoOS repo. |
 
-### Clarificación v0.3 scope
+### Unblocking histórica
 
-Los 4 skills de matching/demo-day/tracking son **metodología standalone** (rubrics, scoring, workflows) — no requieren live DojoOS API. Solo el agente `dojoos-api-consumer` depende del API by @garbanzo para enriquecer los skills con live data (candidate pool, investor DB, sync stage tracker). Los skills funcionan 100% sin él.
+Originalmente v0.3/v0.4 scope estaba marcado "blocked on @garbanzo's DojoOS API". Re-evaluación reveló 2 flawed assumptions:
+
+1. Los **skills** son metodología (rubrics, scoring, workflows), no data fetching — shippable sin API
+2. La **OpenAPI spec YA existe** en dojo-documentation (DOJ-3170 closed 2026-04-14) — el agente puede implementarse contra contract, no needs new infrastructure from @garbanzo
+
+Solo quedan los endpoints individuales del Edge Function layer, tracked separately per endpoint en DojoOS repo.
 
 Agente pendiente:
 

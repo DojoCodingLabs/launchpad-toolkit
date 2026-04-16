@@ -1,6 +1,6 @@
 {
   "name": "launchpad-toolkit",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Methodology prototype laboratory for DojoOS Launchpad pillar — AI intake, cap table, co-founder matching, investor matching, demo day prep, stage tracker. Dual-purpose: external CLI for founders without DojoOS + internal validation lab for productizing patterns into the DojoOS Launchpad product.",
   "author": {
     "name": "Luis Andres Pena Castillo",
