@@ -96,7 +96,7 @@ SPEC_FETCHED_AT: <ISO timestamp when spec was cached this session>
 
 On your first invocation in a session, resolve the spec in this order (stop at the first that works):
 
-1. **Local fallback**: `Read` `/home/kvttvrsis/Documentos/GitHub/dojocoding/dojo-documentation/public/openapi.yaml` if the file exists.
+1. **Local fallback**: `Read` `/home/kvttvrsis/Documentos/GitHub/dojocoding/dojocoding-docs/public/openapi.yaml` if the file exists.
 2. **Live fetch**: `WebFetch` `https://docs.dojocoding.io/openapi.yaml` with the prompt `"Return the full raw YAML content verbatim, no summarization"`.
 3. **Hard fail**: if both fail, return `STATUS: ERROR` with `ERROR_DETAIL: "OpenAPI spec unreachable — cannot operate"`.
 
@@ -361,7 +361,7 @@ Expected trajectory: as @william + @garbanzo ship Launchpad endpoints, the `SPEC
 ## Reference — where the spec lives
 
 - **Canonical (live)**: `https://docs.dojocoding.io/openapi.yaml`
-- **Local mirror (dev)**: `/home/kvttvrsis/Documentos/GitHub/dojocoding/dojo-documentation/public/openapi.yaml`
+- **Local mirror (dev)**: `/home/kvttvrsis/Documentos/GitHub/dojocoding/dojocoding-docs/public/openapi.yaml`
 - **Stoplight Elements viewer**: served at `https://docs.dojocoding.io/` (the dojo-documentation platform)
 - **Shipped via**: DOJ-3170 (2026-04-14)
 
