@@ -1,8 +1,24 @@
-# launchpad-toolkit
+<p align="center">
+  <a href="https://dojocoding.io">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/assets/banner-dark.svg">
+      <source media="(prefers-color-scheme: light)" srcset="docs/assets/banner-light.svg">
+      <img alt="Launchpad Toolkit por Dojo Coding: Para founders, del intake al demo day" src="docs/assets/banner-light.svg" width="100%">
+    </picture>
+  </a>
+</p>
+
+# Launchpad Toolkit
+
+**Plugin de Claude Code para founders: intake, cap table, matching con co-founders e inversionistas y demo day.**
 
 > **Methodology prototype laboratory** para el pillar **DojoOS Launchpad** — AI intake, cap table, co-founder matching, investor matching, demo day prep, stage tracker.
 
 Plugin de Claude Code complementario a [`business-model-toolkit`](https://github.com/DojoCodingLabs/business-model-toolkit) (single-venture lifecycle), [`ux-research-toolkit`](https://github.com/DojoCodingLabs/ux-research-toolkit) (user research) y [`venture-studio-toolkit`](https://github.com/DojoCodingLabs/venture-studio-toolkit) (MACRO portfolio management).
+
+[![Licencia BSL-1.1](https://img.shields.io/badge/licencia-BSL--1.1-FF7151?labelColor=201E3D)](LICENSE) [![Versión 0.5.0](https://img.shields.io/badge/versi%C3%B3n-0.5.0-FF7151?labelColor=201E3D)](.claude-plugin/plugin.json) [![Plugin de Claude Code](https://img.shields.io/badge/Claude%20Code-plugin-201E3D?labelColor=201E3D)](#instalación)
+
+[Empezar](#instalación) · [Propósito dual](#propósito-dual) · [Skills](#skills-8--full-v0x-scope) · [Reportar un problema](https://github.com/DojoCodingLabs/launchpad-toolkit/issues/new)
 
 **Posición en el ecosistema**:
 
@@ -121,4 +137,8 @@ claude plugin add DojoCodingLabs/launchpad-toolkit
 
 ## Licencia
 
-Business Source License 1.1 (BSL-1.1). Ver [LICENSE](./LICENSE) para detalles.
+Business Source License 1.1 (BSL-1.1). Ver [LICENSE](./LICENSE) para detalles. Construido por [Dojo Coding](https://dojocoding.io).
+
+<p align="center">
+  <a href="https://dojocoding.io"><img src="docs/assets/dojocoding-mark.png" alt="Dojo Coding" width="48"></a>
+</p>
