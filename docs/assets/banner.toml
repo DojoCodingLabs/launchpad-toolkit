@@ -1,0 +1,17 @@
+name = "Launchpad Toolkit"
+tagline = "Para founders, del intake al [demo day]"
+chips = ["8 skills / 1 agente"]
+meta = "Código disponible · Claude Code"
+tile = "/"
+alt = "Launchpad Toolkit por Dojo Coding: Para founders, del intake al demo day"
+
+[card]
+kind = "ledger"
+label = "Toolkit"
+status = "v0.5.0 · BSL-1.1"
+rows = [
+  ["startup-intake", "Entrevista → startup-profile.md", "core"],
+  ["cap-table-builder", "Founders, pools, SAFEs y vesting", "setup"],
+  ["investor-matching", "Scoring de 5 ejes + pipeline", "matching"],
+  ["demo-day-prep", "Deck, script de 3 min y Q&A", "fundraising"],
+]
